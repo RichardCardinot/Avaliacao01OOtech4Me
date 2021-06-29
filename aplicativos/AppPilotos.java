@@ -60,9 +60,9 @@ public class AppPilotos {
                 }
 
                 // Exiba os pilotos aqui
-                for(Piloto piloto : pilotos) {
-                    System.out.printf("\n--Piloto %s, CPF: %s, Matrícula: %d", piloto.getNome(), piloto.getCpf(), piloto.getMatricula());
-                }
+                for (int i = 0; i < qtdCadastrados; i++) {
+                    System.out.printf("\n--Piloto %s, CPF: %s, Matrícula: %d", pilotos[i].getNome(), pilotos[i].getCpf(), pilotos[i].getMatricula());
+                }          
 
                 voltarMenu(in);
             } else if (opcao == 3) {
@@ -76,7 +76,7 @@ public class AppPilotos {
                 }
                 
                 System.out.print("Informe o CPF a ser localizado: ");
-                int posicaoCpf = localizarEmPilotos(pilotos, in.nextLine());
+                int posicaoCpf = localizarEmPilotos(pilotos, qtdCadastrados, in.nextLine());
                 
                     if (posicaoCpf > -1) {
                         System.out.print("Piloto localizado!");
@@ -115,9 +115,9 @@ public class AppPilotos {
 
                 while (!concluido && op == 1) {
                     
-                    System.out.print("Informe o cpf do piloto: ");
+                    System.out.println("Informe o cpf do piloto: ");                
                     String alvoCpf = in.nextLine();
-                    int posicaoCpf = localizarEmPilotos(pilotos, alvoCpf);
+                    int posicaoCpf = localizarEmPilotos(pilotos, qtdCadastrados, alvoCpf);
                     
                         if (posicaoCpf > -1) {
                             Aeronave aeronave = new Aeronave(cdRegistro, modelo, pilotos[posicaoCpf]);
@@ -130,6 +130,7 @@ public class AppPilotos {
                             System.out.println("Tentar novamente?");
                             System.out.println("[1]Sim, [2]Não");
                             op = in.nextInt();
+                            in.nextLine();
                         }
                 }              
 
@@ -147,8 +148,8 @@ public class AppPilotos {
                 }
 
                 // Exiba as aeronaves aqui
-                for(Aeronave aeronave : aeronaves) {
-                    System.out.printf("%n--Aeronave: Registro: %s, Modelo: %s, Piloto: %s.",aeronave.getCdRegistro(),aeronave.getModelo(),aeronave.getPiloto().getNome());    
+                for(int i = 0; i < qtdAeroCadastrados; i++) {
+                    System.out.printf("%n--Aeronave: Registro: %s, Modelo: %s, Piloto: %s.",aeronaves[i].getCdRegistro(),aeronaves[i].getModelo(),aeronaves[i].getPiloto().getNome());    
                 }
 
                 voltarMenu(in);
@@ -164,7 +165,7 @@ public class AppPilotos {
                 }
                 
                 System.out.print("Informe o código de registro a ser localizado: ");
-                int posicaoRegistro = localizarEmAeronaves(aeronaves, in.nextLine());
+                int posicaoRegistro = localizarEmAeronaves(aeronaves, qtdAeroCadastrados, in.nextLine());
                 
                     if (posicaoRegistro > -1) {
                         System.out.print("Aeronave localizada!");
@@ -241,8 +242,8 @@ public class AppPilotos {
                             }
             
                             // Exiba os pilotos aqui
-                            for(Piloto piloto : pilotosAmpliado) {
-                                System.out.printf("\n--Piloto %s, CPF: %s, Matrícula: %d", piloto.getNome(), piloto.getCpf(), piloto.getMatricula());
+                            for(int i = 0; i < qtdCadastrados; i++) {
+                                System.out.printf("\n--Piloto %s, CPF: %s, Matrícula: %d", pilotosAmpliado[i].getNome(), pilotosAmpliado[i].getCpf(), pilotosAmpliado[i].getMatricula());
                             }
             
                             voltarMenu(in);
@@ -257,7 +258,7 @@ public class AppPilotos {
                             }
                             
                             System.out.print("Informe o CPF a ser localizado: ");
-                            int posicaoCpf = localizarEmPilotosAmpliado(pilotosAmpliado, in.nextLine());
+                            int posicaoCpf = localizarEmPilotosAmpliado(pilotosAmpliado, qtdAeroCadastrados, in.nextLine());
                             
                                 if (posicaoCpf > -1) {
                                     System.out.print("Piloto localizado!");
@@ -297,7 +298,7 @@ public class AppPilotos {
                     
                                 System.out.print("Informe o cpf do piloto: ");
                                 String alvoCpf = in.nextLine();
-                                int posicaoCpf = localizarEmPilotosAmpliado(pilotosAmpliado, alvoCpf);
+                                int posicaoCpf = localizarEmPilotosAmpliado(pilotosAmpliado, qtdCadastrados, alvoCpf);
                     
                                     if (posicaoCpf > -1) {
                                         Aeronave aeronave = new Aeronave(cdRegistro, modelo, pilotosAmpliado[posicaoCpf]);
@@ -310,6 +311,7 @@ public class AppPilotos {
                                         System.out.println("Tentar novamente?");
                                         System.out.println("[1]Sim, [2]Não");
                                         op = in.nextInt();
+                                        in.nextLine();
                                     }
                             }              
 
@@ -326,9 +328,10 @@ public class AppPilotos {
                             }
 
                             // Exiba as aeronaves aqui
-                            for(Aeronave aeronave : aeronavesAmpliado) {
-                                System.out.printf("%n--Aeronave: Registro: %s, Modelo: %s, Piloto: %s.",aeronave.getCdRegistro(),aeronave.getModelo(),aeronave.getPiloto().getNome());    
+                            for(int i = 0; i < qtdAeroCadastrados; i++) {
+                                System.out.printf("%n--Aeronave: Registro: %s, Modelo: %s, Piloto: %s.",aeronavesAmpliado[i].getCdRegistro(),aeronavesAmpliado[i].getModelo(),aeronavesAmpliado[i].getPiloto().getNome());    
                             }
+
 
                             voltarMenu(in);
 
@@ -343,7 +346,7 @@ public class AppPilotos {
                             }
                 
                             System.out.print("Informe o código de registro a ser localizado: ");
-                            int posicaoRegistro = localizarEmAeronavesAmpliado(aeronavesAmpliado, in.nextLine());
+                            int posicaoRegistro = localizarEmAeronavesAmpliado(aeronavesAmpliado, qtdAeroCadastrados, in.nextLine());
                 
                                 if (posicaoRegistro > -1) {
                                     System.out.print("Aeronave localizada!");
@@ -382,10 +385,10 @@ public class AppPilotos {
     
     }
 
-    private static int localizarEmPilotos(Piloto[] pilotos, String alvoCpf) {
+    private static int localizarEmPilotos(Piloto[] pilotos, int qtdCadastrados, String alvoCpf) {
         int posicaoCpf = -1;
 
-        for (int i = 0; i < pilotos.length && posicaoCpf < 0; i++) {
+        for (int i = 0; i < qtdCadastrados && posicaoCpf < 0; i++) {
             if (pilotos[i].getCpf().equals(alvoCpf)) {
                 posicaoCpf = i;
                 continue;
@@ -401,10 +404,10 @@ public class AppPilotos {
     }
 
 
-    private static int localizarEmAeronavesAmpliado(Aeronave[] aeronavesAmpliado, String alvoRegistro) {
+    private static int localizarEmAeronavesAmpliado(Aeronave[] aeronavesAmpliado, int qtdAeroCadastrados, String alvoRegistro) {
         int posicaoRegistro = -1;
 
-        for (int i = 0; i < aeronavesAmpliado.length && posicaoRegistro < 0; i++) {
+        for (int i = 0; i < qtdAeroCadastrados && posicaoRegistro < 0; i++) {
             if (aeronavesAmpliado[i].getCdRegistro().equals(alvoRegistro)) {
                 posicaoRegistro = i;
                 continue;
@@ -419,10 +422,10 @@ public class AppPilotos {
         }
     }
 
-    private static int localizarEmPilotosAmpliado(Piloto[] pilotosAmpliado, String alvoCpf) {
+    private static int localizarEmPilotosAmpliado(Piloto[] pilotosAmpliado, int qtdCadastrados,  String alvoCpf) {
         int posicaoCpf = -1;
 
-        for (int i = 0; i < pilotosAmpliado.length && posicaoCpf < 0; i++) {
+        for (int i = 0; i < qtdCadastrados && posicaoCpf < 0; i++) {
             if (pilotosAmpliado[i].getCpf().equals(alvoCpf)) {
                 posicaoCpf = i;
                 continue;
@@ -438,10 +441,10 @@ public class AppPilotos {
     }
 
 
-    private static int localizarEmAeronaves(Aeronave[] aeronaves, String alvoRegistro) {
+    private static int localizarEmAeronaves(Aeronave[] aeronaves, int qtdAeroCadastrados, String alvoRegistro) {
         int posicaoRegistro = -1;
 
-        for (int i = 0; i < aeronaves.length && posicaoRegistro < 0; i++) {
+        for (int i = 0; i < qtdAeroCadastrados && posicaoRegistro < 0; i++) {
             if (aeronaves[i].getCdRegistro().equals(alvoRegistro)) {
                 posicaoRegistro = i;
                 continue;
